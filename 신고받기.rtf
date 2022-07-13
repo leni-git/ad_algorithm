@@ -1,0 +1,132 @@
+{\rtf1\ansi\ansicpg949\cocoartf2638
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset129 AppleSDGothicNeo-Regular;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww33400\viewh18040\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 function solution(id_list, report, k) \{\
+    var answer = [];\
+    \
+    //console.log(id_list.length);\
+    \
+    /*for(let i=0; id_list.length > i; i++)\{\
+        console.log(id_list[i]);\
+        \
+    \}*/\
+    \
+    const reporterArr = [];\
+    const targetArr = [];\
+    \
+    /* 
+\f1 \'bd\'c5\'b0\'ed\'b3\'bb\'bf\'eb
+\f0  
+\f1 \'c1\'df\'ba\'b9\'c1\'a6\'b0\'c5
+\f0  */\
+    const set = new Set(report);\
+    const uniqueReport = [... set];\
+    \
+    console.log("uniqueReport :: " + uniqueReport);\
+    \
+    for(let i=0; uniqueReport.length > i; i++)\{\
+        let reporter = report[i].split(" ")[0];//
+\f1 \'bd\'c5\'b0\'ed\'c0\'da
+\f0 \
+        let target = report[i].split(" ")[1];//
+\f1 \'bd\'c5\'b0\'ed\'b4\'eb\'bb\'f3
+\f0 \
+        \
+        console.log("
+\f1 \'bd\'c5\'b0\'ed\'c0\'da
+\f0  :: " + reporter);\
+        console.log("
+\f1 \'bd\'c5\'b0\'ed\'b4\'eb\'bb\'f3
+\f0  :: " + target);\
+        \
+        reporterArr.push(reporter);\
+        targetArr.push(target);\
+        \
+        //
+\f1 \'b0\'a2
+\f0  
+\f1 \'c0\'af\'c0\'fa\'b4\'c2
+\f0  
+\f1 \'c7\'d1\'b9\'f6\'bf\'a1
+\f0  
+\f1 \'c7\'d1\'b8\'ed\'c0\'c7
+\f0  
+\f1 \'c0\'af\'c0\'fa\'b8\'b8
+\f0  
+\f1 \'bd\'c5\'b0\'ed\'b0\'a1\'b4\'c9
+\f0 .\
+        //
+\f1 \'c1\'df\'ba\'b9\'bd\'c3
+\f0  1
+\f1 \'c8\'b8\'b7\'ce
+\f0  
+\f1 \'c4\'ab\'bf\'ee\'c6\'ae
+\f0 \
+    \}\
+    \
+    //console.log("targetArr :: " + JSON.stringify(targetArr));\
+    //console.log("
+\f1 \'bd\'c5\'b0\'ed\'b4\'e7\'c7\'d1
+\f0  
+\f1 \'c8\'bd\'bc\'f6
+\f0  :: " + JSON.stringify((getCount(targetArr))));\
+    \
+    let reportCnt = getCount(targetArr);\
+    \
+    //console.log("targetArr.length :: " + targetArr.length);\
+    \
+    let mailTargetArr = []//
+\f1 \'c1\'b6\'c4\'a1\'b0\'e1\'b0\'fa
+\f0  
+\f1 \'b8\'de\'c0\'cf
+\f0  
+\f1 \'b9\'de\'c0\'bb
+\f0  
+\f1 \'bb\'e7\'bf\'eb\'c0\'da
+\f0  
+\f1 \'b8\'ae\'bd\'ba\'c6\'ae
+\f0 \
+    \
+    for(let i=0; targetArr.length > i; i++)\{\
+        //console.log(targetArr[i] + " :: " + reportCnt[targetArr[i]]);\
+        \
+        if(reportCnt[targetArr[i]] >= k)\{\
+            //console.log("
+\f1 \'c1\'a4\'c1\'f6
+\f0  
+\f1 \'b4\'eb\'bb\'f3
+\f0  :: " + targetArr[i] + ", 
+\f1 \'bd\'c5\'b0\'ed\'c8\'bd\'bc\'f6
+\f0  :: " + reportCnt[targetArr[i]]);\
+            //console.log("
+\f1 \'c1\'a4\'c1\'f6\'b4\'eb\'bb\'f3
+\f0  
+\f1 \'bd\'c5\'b0\'ed\'c0\'da
+\f0  :: " + reporterArr[i]);\
+            \
+            mailTargetArr.push(reporterArr[i]);\
+        \}\
+    \}\
+    \
+    //console.log("mailTargetArr :: " + JSON.stringify(mailTargetArr));\
+    \
+    for(let i=0; id_list.length > i; i++)\{\
+        answer.push(mailTargetArr.filter(element => id_list[i] === element).length);   \
+    \}\
+    \
+    console.log("answer :: " + JSON.stringify(answer));\
+    \
+    return answer;\
+\}\
+\
+function getCount(array) \{\
+    return array.reduce((pv, cv)=>\{\
+        pv[cv] = (pv[cv] || 0) + 1;\
+        return pv;\
+    \}, \{\});\
+\}\
+}
