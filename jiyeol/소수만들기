@@ -1,0 +1,41 @@
+function solution(nums) {
+    var answer = 0;
+    
+    // [실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
+    //console.log('Hello Javascript')
+   
+    for(var i=0; i < nums.length; i++){ 
+        for(var j=(i + 1); j < nums.length; j++){
+            for(var k=(j + 1); k < nums.length; k++){
+                //console.log('i + ' + nums[i])
+                //console.log('j + ' + nums[j])
+                //console.log('k = ' + nums[k])
+                
+                //console.log(nums[i] + nums[j] + nums[k]);
+                
+                if(isPrime(nums[i] + nums[j] + nums[k])){
+                    //console.log('is Prime');
+                    answer++;
+                }
+            } 
+        }
+    }
+    
+    //console.log('answer' + answer)
+    
+    return answer;
+}
+
+function isPrime(num){
+    if(num % 2 === 0) return false;
+    
+    let divisor = 3;
+    
+    while(divisor < num){
+        if(num % divisor === 0) return false;
+           
+        divisor += 2;   
+    }
+        
+    return true;
+}
