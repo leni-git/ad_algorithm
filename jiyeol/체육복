@@ -1,0 +1,41 @@
+/* n : 2명 이상 30명 이하 
+ lost, reserve : 1명 이상 n명 이하
+*/
+function solution(n, lost, reserve) {
+    var answer = n - lost.length;
+        
+    console.log(answer);
+    
+    // n : 1,2,3,4,5,6,7,8,9,10
+        
+    // lost : 3,5,9
+    
+    // reserve : 4,6  
+        
+    // lost,rserve 중복제거
+    var realLost=lost.filter((l)=>!reserve.includes(l));
+    var realReserve=reserve.filter((r)=>!lost.includes(r));
+
+    answer += lost.length - realLost.length;
+    
+    //정렬
+    realLost.sort((a,b)=>a-b);
+        
+    realLost.forEach((l)=>{
+        if(realReserve.length===0){
+            return;
+        }
+        
+        if(realReserve.includes(l-1)){
+            realReserve=realReserve.filter((r)=>r!==l-1);
+            answer++;
+        }
+        else if(realReserve.includes(l+1)){
+            realReserve=realReserve.filter((r)=>r!==l+1);
+            answer++;
+        }
+        
+    });
+    
+    return answer;
+}
